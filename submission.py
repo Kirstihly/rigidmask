@@ -147,6 +147,7 @@ if 'seq' in args.dataset:
     if os.path.exists(calib_path):
         seqcalib = np.loadtxt(calib_path)
     else:
+        print(calib_path, "not found. ")
         exit()
 
 mkdir_p('%s/%s/'% (args.outdir, args.dataset))
@@ -394,8 +395,11 @@ def main():
         # submit to KITTI benchmark
         if 'test' in args.dataset:
             outdir = 'benchmark_output'
+            os.makedirs(outdir, exist_ok=True)
             # kitti scene flow
             import skimage.io
+            os.makedirs(os.path.join(outdir, 'disp_0'), exist_ok=True)
+            os.makedirs(os.path.join(outdir, 'disp_1'), exist_ok=True)
             skimage.io.imsave('%s/disp_0/%s.png'% (outdir,idxname),(disp*256).astype('uint16'))
             skimage.io.imsave('%s/disp_1/%s.png'% (outdir,idxname),(disp1*256).astype('uint16'))
             flow[:,:,2]=1.

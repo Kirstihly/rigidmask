@@ -32,16 +32,16 @@ args = parser.parse_args()
 # dataloader
 if args.dataset == '2015':
     from dataloader import kitti15list as DA
-    datapath = '/ssd/kitti_scene/training/'
+    datapath = '/data/kitti_scene/training/'
 elif args.dataset == '2015val':
     from dataloader import kitti15list_val as DA
-    datapath = '/ssd/kitti_scene/training/'
+    datapath = '/data/kitti_scene/training/'
 elif args.dataset == 'sintel':
     from dataloader import sintel_mrflow_val as DA
-    datapath = '/ssd/rob_flow/training/'
+    datapath = '/data/rob_flow/training/'
 elif args.dataset == 'sintelval':
     from dataloader import sintellist_val as DA
-    datapath = '/ssd/rob_flow/training/'
+    datapath = '/data/rob_flow/training/'
 
 test_left_img, test_right_img ,flow_paths= DA.dataloader(datapath)
 if '2015' in args.dataset:
